@@ -11,7 +11,32 @@ public class FindInTwoDimArray {
 
     }
 
-    public boolean Find(int target, int [][] array) {
+    /**
+     *  思路
+     * 矩阵是有序的，从左下角来看，向上数字递减，向右数字递增，
+     * 因此从左下角开始查找，当要查找数字比左下角数字大时。右移
+     * 要查找数字比左下角数字小时，上移
+     *
+     * @param target
+     * @param array
+     * @return
+     */
 
+    public boolean Find(int target, int [][] array) {
+        int rowCount = array.length;
+        int colCount = array[0].length;
+        for(int row = rowCount-1,col = 0;row>=0&&col<colCount;){
+            if(target == array[row][col])
+                return true;
+            if(target < array[row][col]){
+                row --;
+                continue;
+            }
+            if(target > array[row][col]){
+                col ++;
+                continue;
+            }
+        }
+        return false;
     }
 }
